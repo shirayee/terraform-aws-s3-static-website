@@ -32,3 +32,15 @@ variable "zone_id" {
   description = "ID of the Route 53 Hosted Zone in which to create an alias record"
   type        = "string"
 }
+
+variable "root_document" {
+  description = "Document of root (i.e. index.html)"
+  type = "string"
+  default = "index.html"
+}
+
+variable "error_document" {
+  description = "Document of error pages"
+  type = "string"
+  default = "error.html"
+}

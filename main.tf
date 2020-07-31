@@ -19,8 +19,8 @@ resource "aws_s3_bucket" "static_website" {
   bucket = "${var.domain_name}"
 
   website {
-    index_document = "index.html"
-    error_document = "error.html"
+    index_document = var.root_document
+    error_document = var.error_document
 
     routing_rules = "${length(var.public_dir) > 0 ? local.static_website_routing_rules : ""}"
   }
@@ -78,18 +78,18 @@ resource "aws_cloudfront_distribution" "cdn" {
   comment             = "CDN for ${var.domain_name} S3 Bucket"
   enabled             = true
   is_ipv6_enabled     = true
-  default_root_object = "index.html"
+  default_root_object = var.root_document
   aliases             = ["${var.domain_name}"]
 
   custom_error_response {
     error_code          = 403
-    response_page_path  = "/error.html"
+    response_page_path  = "/${var.error_document}"
     response_code       = 404
   }
 
   custom_error_response {
     error_code          = 404
-    response_page_path  = "/error.html"
+    response_page_path  = "/${var.error_document}"
     response_code       = 404
   }
 
