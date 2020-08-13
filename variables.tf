@@ -44,3 +44,15 @@ variable "error_document" {
   type        = string
   default     = "error.html"
 }
+
+variable "min_ttl" {
+  type = number
+}
+
+variable "default_ttl" {
+  type = number
+}
+
+variable "max_ttl" {
+  type = number
+}
