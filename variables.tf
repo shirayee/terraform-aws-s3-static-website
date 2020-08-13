@@ -33,3 +33,14 @@ variable "zone_id" {
   type        = string
 }
 
+variable "root_document" {
+  description = "Document of root (i.e. index.html)"
+  type        = string
+  default     = "index.html"
+}
+
+variable "error_document" {
+  description = "Document of error pages"
+  type        = string
+  default     = "error.html"
+}
