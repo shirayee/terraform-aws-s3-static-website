@@ -26,6 +26,12 @@ resource "aws_s3_bucket" "static_website" {
     routing_rules = length(var.public_dir) > 0 ? local.static_website_routing_rules : ""
   }
 
+  cors_rule {
+    allowed_headers = ["*"]
+    allowed_methods = ["GET", "PUT"]
+    allowed_origins = length(var.allowed_origins) == 0 ? ["*"] : var.allowed_origins
+  }
+
   tags = merge(
     {
       "Name" = "${var.domain_name}-static_website"

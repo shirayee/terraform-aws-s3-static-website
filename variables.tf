@@ -56,3 +56,8 @@ variable "default_ttl" {
 variable "max_ttl" {
   type = number
 }
+
+variable "allowed_origins" {
+  type = list(string)
+  default = []
+}
